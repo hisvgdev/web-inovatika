@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-manrope: var(--font-monrope);
+
+    --color-primary: oklch(0.1935 0.0142 278.61);
+}
+
+@layer base {
+    * {
+        @apply p-0 m-0 box-border;
+    }
+    body {
+        @apply font-manrope bg-gray-100 dark:bg-primary;
+    }
+}

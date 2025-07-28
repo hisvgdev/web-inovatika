@@ -1,0 +1,1 @@
+export { RestorePass as default } from './RestorePass';
