@@ -28,7 +28,7 @@ const cards: {
     {
         id: 'ai',
         icon: AIIcon,
-        title: 'Искусственный Интеллект ЖКХ (ИИ ЖКХ)',
+        title: 'ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ЖКХ (ИИ ЖКХ)',
         desc: 'Интеллектуальный помощник на базе максимальных платных версий нейросетей, а также умный поиск в сети интернет.',
     },
     {
@@ -90,9 +90,9 @@ export const AboutServiceSection: FC<AboutServiceSectionProps> = () => {
             case 'ai':
                 return (
                     <div className="text-left text-black space-y-4 text-sm leading-relaxed dark:text-gray-300">
-                        <h2 className="text-xl font-bold">Искусственный Интеллект ЖКХ (ИИ ЖКХ)</h2>
+                        <h2 className="text-xl font-bold">ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ЖКХ (ИИ ЖКХ)</h2>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                            <strong>Искусственный Интеллект ЖКХ</strong> — это специализированная
+                            <strong>ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ЖКХ</strong> — это специализированная
                             нейросеть, настроенная на работу именно с вопросами
                             жилищно-коммунального хозяйства России.
                         </p>

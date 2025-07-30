@@ -26,12 +26,12 @@ export const Services: FC<ServicesProps> = (props) => {
                     title="Проверка контрагентов"
                     description="Этот сервис позволит получить вам актуальную справку с информацией о контрагенте"
                     href="/programs/check-conter-agent"
-                    disabled={!hasSubs}
                 />
                 <ServiceCard
                     icon={aiIcon}
-                    title="Искусственный интеллект ЖКХ"
-                    description="Интеллектуальный помощник на базе современных версий нейросетей"
+                    title="ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ЖКХ"
+                    description="Искусственный интеллект, ваш помощник на базе современных версий
+                                нейросетей"
                     href="/programs/ai-chats"
                     disabled={!hasSubs}
                 />

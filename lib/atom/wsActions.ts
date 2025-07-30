@@ -6,6 +6,7 @@ export const isWsConnected = atom(false);
 export const isModalSpecificOpen = atom(false);
 
 export const atomSelectedSpecific = atom<AiModalSpecificEnum>(AiModalSpecificEnum.noSpecifics)
+export const atomSelectedEmo = atom<string | null>(null)
 export const atomInternetSearch = atom<'default' | 'web_search'>('default');
 export const atomFinishedChooseSettings = atom(false);
 export const idFromCreateChat = atom("");

@@ -297,6 +297,9 @@ export const AiChatsConnection: FC<AiChatsGridProps> = ({ token }) => {
     return (
         <div className="mt-12">
             <Toaster richColors />
+            <div className="hidden lg:flex justify-start ml-12">
+                <AiClearChatsButton />
+            </div>
             <div className="flex flex-col gap-3 px-4 lg:hidden">
                 {/* <Link href="/" className="flex items-center gap-3.5">
                     <ArrowLeftIcon color={theme === 'light' ? 'black' : 'white'} size={24} />
@@ -307,27 +310,52 @@ export const AiChatsConnection: FC<AiChatsGridProps> = ({ token }) => {
                 </div>
             </div>
 
-            <div className="flex items-center justify-center flex-col gap-y-6 mx-auto h-[75vh] lg:h-[80vh]">
+            <div className="flex items-center justify-center flex-col gap-y-6 mx-auto h-[75vh] lg:h-[75vh]">
                 <div className="w-full h-[60vh] overflow-auto px-4 lg:h-[80vh] lg:px-0 lg:pl-64 lg:mt-8 lg:pr-14 lg:mx-auto space-y-6">
-                    {chatMessages.map((msg, idx) => (
-                        <div key={`${msg.id || idx}-${msg.content}`} className="flex items-center">
-                            {msg.role === 'ai' ? (
-                                <div className="bg-white p-2.5 rounded-xl max-w-[80%] dark:bg-[#1D1E27]">
-                                    <p className="font-manrope text-sm font-medium text-black dark:text-white">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                            {msg.content}
-                                        </ReactMarkdown>
-                                    </p>
+                    {chatMessages.length < 1 ? (
+                        <div className="bg-white p-2.5 rounded-xl max-w-[80%] dark:bg-[#1D1E27]">
+                            <p className="flex flex-col gap-6 font-manrope text-sm font-medium text-black dark:text-white">
+                                <p>Здравствуйте! 👋</p>
+                                <p>
+                                    Я - ваш персональный AI-консультант по вопросам ЖКХ. Я помогу
+                                    вам разобраться в любых вопросах, связанных с
+                                    жилищно-коммунальным хозяйством.
+                                </p>
+                                <div>
+                                    <p>Как со мной общаться:</p>
+                                    <ul className="list-disc pl-6">
+                                        <li>Задавайте вопросы в свободной форме</li>
+                                        <li>
+                                            Уточняйте детали, если мой ответ недостаточно полный
+                                        </li>
+                                    </ul>
                                 </div>
-                            ) : (
-                                <div className="ml-auto bg-[#262833] p-2.5 rounded-xl max-w-[80%] opacity-90 dark:bg-[#595D76]">
-                                    <p className="font-manrope text-sm font-medium text-white">
-                                        {msg.content}
-                                    </p>
-                                </div>
-                            )}
+                            </p>
                         </div>
-                    ))}
+                    ) : (
+                        chatMessages.map((msg, idx) => (
+                            <div
+                                key={`${msg.id || idx}-${msg.content}`}
+                                className="flex items-center"
+                            >
+                                {msg.role === 'ai' ? (
+                                    <div className="bg-white p-2.5 rounded-xl max-w-[80%] dark:bg-[#1D1E27]">
+                                        <p className="font-manrope text-sm font-medium text-black dark:text-white">
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                                {msg.content}
+                                            </ReactMarkdown>
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="ml-auto bg-[#262833] p-2.5 rounded-xl max-w-[80%] opacity-90 dark:bg-[#595D76]">
+                                        <p className="font-manrope text-sm font-medium text-white">
+                                            {msg.content}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        ))
+                    )}
 
                     {isAwaitingResponse && (
                         <div className="flex items-center">

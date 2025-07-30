@@ -49,9 +49,13 @@ export const CurrentPlan = ({ tariffs }: { tariffs: TariffsProps[] }) => {
                                     })}
                                 </span>
                             </div>
-                            <Button onClick={handleChangeActiveCanceledSubs}>
+                            <button
+                                type="button"
+                                className="font-bold text-[#FDB933] cursor-pointer text-xs"
+                                onClick={handleChangeActiveCanceledSubs}
+                            >
                                 Отменить автопродление подписки?
-                            </Button>
+                            </button>
                         </div>
                     </button>
                 </div>

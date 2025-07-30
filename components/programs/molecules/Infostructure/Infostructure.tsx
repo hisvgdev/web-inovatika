@@ -17,14 +17,14 @@ export const Infostructure: FC<InfostructureProps> = async () => {
             <div className="flex flex-col gap-y-1.5">
                 <ServiceCard
                     icon={daidjestIcon}
-                    title="Канал “ДайджестПРОфи ЖКХ”"
+                    title="Телеграмм канал “ДайджестПРОфи ЖКХ”"
                     description="11 госорганов, 29 экспертов, 42 СМИ новости кратко + первоисточники"
                     href={links[0] || ''}
                 />
 
                 <ServiceCard
                     icon={humanIcon}
-                    title="Канал “А. Гурылев PRO ЖКХ”"
+                    title="Телеграмм канал “А. Гурылев PRO ЖКХ”"
                     description="Канал жителям городов. ЖКХ не враг, а инструмент. Учитесь пользоваться"
                     href={links[1] || ''}
                 />

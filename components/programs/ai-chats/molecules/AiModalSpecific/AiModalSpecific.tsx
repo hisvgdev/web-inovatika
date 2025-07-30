@@ -4,13 +4,14 @@ import { Button } from '@/components/ui/Button/Button'
 import { createChats } from '@/utils/api/chats.api'
 import { XIcon } from '@phosphor-icons/react'
 import { useAtom, useSetAtom } from 'jotai'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { toast } from 'sonner'
 
 import {
     atomFinishedChooseSettings,
     atomInternetSearch,
+    atomSelectedEmo,
     atomSelectedSpecific,
     idFromCreateChat,
 } from '@/lib/atom/wsActions'
@@ -25,7 +26,7 @@ const SPECIFICS = [
         label: 'Производственно-технические процессы',
         emo: '🔧',
     },
-    { key: AiModalSpecificEnum.financial, label: 'Финансовая сфера', emo: '💰' },
+    { key: AiModalSpecificEnum.financial, label: 'Финансы и бухгалтерия', emo: '💰' },
     { key: AiModalSpecificEnum.legal, label: 'Юридическая работа', emo: '⚖️' },
     { key: AiModalSpecificEnum.population, label: 'Работа с населением', emo: '🤝🏻' },
 ]
@@ -37,6 +38,7 @@ export const AiModalSpecific = ({
 }) => {
     const [selectedSpecific, setSelectedSpecific] =
         useAtom<AiModalSpecificEnum>(atomSelectedSpecific)
+    const setSelectedEmo = useSetAtom(atomSelectedEmo)
 
     const [internetSearch, setInternetSearch] = useAtom<'default' | 'web_search'>(
         atomInternetSearch,
@@ -80,6 +82,7 @@ export const AiModalSpecific = ({
             setInternetSearch('web_search')
         }
     }, [selectedSpecific])
+
     return createPortal(
         <div className="fixed inset-0 z-40 bg-black/80 flex items-center justify-center">
             <div className="bg-white w-full max-w-md p-6 rounded-2xl shadow-lg text-white font-manrope flex flex-col gap-6 dark:bg-[#262833]">
@@ -100,7 +103,10 @@ export const AiModalSpecific = ({
                                 <div>{emo}</div>
                                 <button
                                     type="button"
-                                    onClick={() => setSelectedSpecific(key)}
+                                    onClick={() => {
+                                        setSelectedSpecific(key)
+                                        setSelectedEmo(emo)
+                                    }}
                                     className={`text-left text-sm font-medium cursor-pointer`}
                                 >
                                     {label}
