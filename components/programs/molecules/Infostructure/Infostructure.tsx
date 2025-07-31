@@ -24,7 +24,7 @@ export const Infostructure: FC<InfostructureProps> = async () => {
 
                 <ServiceCard
                     icon={humanIcon}
-                    title="Телеграмм канал “А. Гурылев PRO ЖКХ”"
+                    title="Телеграмм канал “А. Гурылев ПРО ЖКХ”"
                     description="Канал жителям городов. ЖКХ не враг, а инструмент. Учитесь пользоваться"
                     href={links[1] || ''}
                 />
