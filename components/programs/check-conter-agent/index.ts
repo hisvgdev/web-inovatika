@@ -1,0 +1,1 @@
+export { CheckAgent as default } from './CheckAgent';
