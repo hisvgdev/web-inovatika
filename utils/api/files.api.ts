@@ -1,6 +1,6 @@
 
 
-export const fetchFileByInn = async (inn: string, returnTo: 'web' | 'telegram'): Promise<Blob | boolean | undefined> => {
+export const fetchFileByInn = async (inn: string, returnTo: 'web' | 'telegram'): Promise<Blob | undefined> => {
   try {
     const res = await fetch(`/api/inn?inn=${encodeURIComponent(inn)}&return_to=${returnTo}`, {
       method: 'GET',
@@ -8,10 +8,10 @@ export const fetchFileByInn = async (inn: string, returnTo: 'web' | 'telegram'):
       cache: 'no-store',
     });
 
-    if (res.status === 402) {
-      console.warn(`Требуется подписка`);
-      return false;
-    }
+    // if (res.status === 402) {
+    //   console.warn(`Требуется подписка`);
+    //   return false;
+    // }
 
     if (!res.ok && res.status !== 402) {
       console.error(`Ошибка при получении файла по ИНН ${inn}:`, res);

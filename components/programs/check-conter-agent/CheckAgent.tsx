@@ -31,15 +31,14 @@ export const CheckAgent = () => {
 
         try {
             if (isTelegram()) {
-                const success = await fetch(`/api/v1/files/inn/${getInn}?return_to=telegram`)
+                const success = await fetchFileByInn(getInn, 'telegram')
                 if (!success) {
                     toastError('Произошла тех.ошибка', 'Попробуйте еще раз запросить файл по ИНН')
                 }
             } else {
-                const response = await fetch(`/api/v1/files/inn/${getInn}?return_to=web`)
-                if (!response.ok) throw new Error('Ошибка при получении файла')
+                const blob = await fetchFileByInn(getInn, 'web')
+                if (!blob) throw new Error('Ошибка при получении файла')
 
-                const blob = await response.blob()
                 const url = window.URL.createObjectURL(blob)
 
                 setTimeout(() => {
