@@ -13,7 +13,7 @@ export const getMe = async (): Promise<GetMeProps> => {
     const data = await res.json();
 
     if (!res.ok) {
-      console.error('Ошибка при получении пользователя:');
+      console.error('Ошибка при получении пользователя:', res);
       throw new Error('Failed to fetch user');
     }
 

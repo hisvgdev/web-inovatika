@@ -2,7 +2,6 @@
 
 import { getMe } from '@/utils/api/users.api'
 import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 interface ClientWrapperProps {
@@ -10,7 +9,6 @@ interface ClientWrapperProps {
 }
 
 export default function ClientWrapper({ children }: ClientWrapperProps) {
-    const router = useRouter()
     // useEffect(() => {
     //     // Telegram WebApp настройки
     //     // @ts-ignore
@@ -36,7 +34,7 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
     //     }
     // }, [])
 
-    const { data, error, isSuccess } = useQuery({
+    const { data, isSuccess } = useQuery({
         queryKey: ['get-me'],
         queryFn: async () => await getMe(),
         refetchInterval: 5000,
@@ -45,17 +43,10 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
     })
 
     useEffect(() => {
-        if (isSuccess && data) {
+        if (isSuccess) {
             localStorage.setItem('me', JSON.stringify(data))
         }
-    }, [isSuccess, data])
-
-    useEffect(() => {
-        if (error) {
-            router.push('/auth/login')
-            console.error('Ошибка при получении пользователя:', error)
-        }
-    }, [error])
+    }, [isSuccess])
 
     return <div className="h-full flex items-center justify-center w-full">{children}</div>
 }

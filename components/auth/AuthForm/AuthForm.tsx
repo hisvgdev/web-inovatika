@@ -6,7 +6,7 @@ import { loginUser } from '@/utils/api/auth.api'
 import { XIcon } from '@phosphor-icons/react'
 import { useForm } from '@tanstack/react-form'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { FC, useEffect } from 'react'
 import { toast, Toaster } from 'sonner'
 
@@ -17,6 +17,7 @@ import { AuthFormProps } from './AuthForm.types'
 export const AuthForm: FC<AuthFormProps> = (props) => {
     const {} = props
     // const [isTelegramApp, setIsTelegramApp] = useAtom(telegramApp)
+    const router = useRouter()
 
     const form = useForm({
         validators: {
@@ -34,24 +35,23 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
                 formData.append('email', email)
                 formData.append('password', pass)
 
-                const res = await loginUser(formData)
-                if (res) {
-                    redirect('/')
-                } else {
-                    toast.custom((t) => (
-                        <div className="bg-[#262833] p-3 rounded-2xl">
-                            <div className="flex items-center gap-4">
-                                <XIcon size={32} color="#FFFFFF" weight="light" />
-                                <div>
-                                    <h1 className="font-manrope text-white font-bold text-sm">
-                                        Аккаунт с такой почтой или паролем не найден, попробуйте еще
-                                        раз
-                                    </h1>
+                loginUser(formData)
+                    .then(() => router.push('/'))
+                    .catch(() => {
+                        toast.custom((t) => (
+                            <div className="bg-[#262833] p-3 rounded-2xl">
+                                <div className="flex items-center gap-4">
+                                    <XIcon size={32} color="#FFFFFF" weight="light" />
+                                    <div>
+                                        <h1 className="font-manrope text-white font-bold text-sm">
+                                            Аккаунт с такой почтой или паролем не найден, попробуйте
+                                            еще раз
+                                        </h1>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                }
+                        ))
+                    })
             }
         },
     })
